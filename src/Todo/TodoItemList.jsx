@@ -5,10 +5,10 @@ import React from 'react';
 export default class TodoItemList extends React.Component {
 
     todoListKey = "todoItems";
-    emptyForm = {
+    emptyForm = () => ({
         name: '',
         priority: 0
-    };
+    });
 
     constructor(props) {
         super(props);
@@ -16,7 +16,7 @@ export default class TodoItemList extends React.Component {
         this.state = {
             todoList: savedTodoItems,
             displayNewTaskForm: false,
-            formData: this.emptyForm
+            formData: this.emptyForm()
         };
         this.appendTask = this.appendTask.bind(this);
         this.handleFormUpdate = this.handleFormUpdate.bind(this);
@@ -39,7 +39,7 @@ export default class TodoItemList extends React.Component {
         localStorage.setItem(this.todoListKey, JSON.stringify(currentTasks));
         this.setState({
             todoList: currentTasks,
-            formData: this.emptyForm
+            formData: this.emptyForm()
         });
     }
 
