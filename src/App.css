@@ -28,6 +28,28 @@
   color: #61dafb;
 }
 
+.add-task-button {
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+}
+
+.input-form {
+  padding: 0 1rem;
+  min-height: 50%;
+}
+
+.todo-list {
+  margin: 0;
+  width: 100%;
+}
+
+.task-list-item {
+  margin: 0;
+  padding: 1rem 0;
+  width: 100%;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

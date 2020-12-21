@@ -7,7 +7,9 @@ export default class TodoItemList extends React.Component {
     todoListKey = "todoItems";
     emptyForm = () => ({
         name: '',
-        priority: 0
+        priority: 0,
+        estimate: '',
+        description: ''
     });
 
     constructor(props) {
@@ -55,22 +57,21 @@ export default class TodoItemList extends React.Component {
     render() {
         let form = <></>;
         if (this.state && this.state.displayNewTaskForm) {
-            form = (<form className="input-form" onSubmit={this.appendTask}>
-                <br />
+            form = (<div className=""><form className="input-form" onSubmit={this.appendTask}>
                 <input type="text" name="name" placeholder="task name" aria-label="name" onChange={(event) => this.handleFormUpdate(event)} value={this.state.formData.name}></input>
-                <br /><br />
                 <input type="number" name="priority" placeholder="priority" aria-label="priority" step="1" pattern="[0-9]" onChange={(event) => this.handleFormUpdate(event)} value={this.state.formData.priority}></input>
-                <br />
-                <input type="submit"></input>
-            </form>);
+                <input type="text" name="estimate" placeholder="1 hour" aria-label="estimate" onChange={(event) => this.handleFormUpdate(event)} value={this.state.formData.estimate}></input>
+                <input type="text" name="description" placeholder="important stuff" aria-label="description" onChange={(event) => this.handleFormUpdate(event)} value={this.state.formData.description}></input>
+                <button className="btn waves-effect waves-light" type="submit">Submit<i className="material-icons right">send</i></button>
+            </form></div>);
         }
         return (
             <>
-                <div className="todo-list">
-                    {this.state && this.state.todoList && this.state.todoList.map(todo => (<TodoItem name={todo.name} key={todo.name} />))}
+                <div className="todo-list container">
+                    {this.state && this.state.todoList && this.state.todoList.map(todo => (<TodoItem {...todo}  key={todo.name} />))}
                 </div>
 
-                <button title="add task" onClick={() => this.setState({ displayNewTaskForm: !this.state.displayNewTaskForm })}> add a task</button>
+                <button title="add task" onClick={() => this.setState({ displayNewTaskForm: !this.state.displayNewTaskForm })} className="btn-floating btn-large waves-effect waves-light red add-task-button"><i className="material-icons">add</i></button>
 
                 { form}
             </>
